@@ -1,14 +1,13 @@
-import random
-def primary():
-  #print("Keep it logically awesome.")
+import requests
+improt json
 
- f = open("quotes.txt")
- quotes = f.readlines()
- f.close()
-
- last = 13
- rnd = random.randint(0, last)
- print(quotes[rnd])
+def get_quote():
+  response = requests.get("https://zenquotes.io/api/random")
+  json_data = json.loads(response.text)
+  quote = json_data[0]['q'] + " -" + json_data[0]['a']
+  return quote
 
 if __name__== "__main__":
-  primary()
+  quote = primary()
+  print(quote)
+  
